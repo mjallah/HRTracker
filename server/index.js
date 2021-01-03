@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.json());
 
 const db = mysql.createConnection({
     user: 'root',
@@ -9,14 +13,15 @@ const db = mysql.createConnection({
     database: 'HRTracker'
 });
 
-app.post('/create', (req, res) => {
+app.post("/create", (req, res) => {
+    const id = req.body.id;
     const name = req.body.name;
     const position = req.body.position;
     const salary = req.body.salary;
     const manager = req.body.manager;
 
     db.query(
-        "INSERT INTO employees (name, position, salary, wage) VALUES (?,?,?,?,?)",
+        "INSERT INTO employees (id, name, position, salary, wage) VALUES (?,?,?,?,?)",
         [name, position, salary, manager],
         (err, result) => {
             if (err) {
