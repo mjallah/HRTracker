@@ -3,7 +3,6 @@ import { useState } from "react";
 
 function App() {
 
-  const [id, setID] = useState(0)
   const [name, setName] = useState("")
   const [position, setPosition] = useState("")
   const [salary, setSalary] = useState(0)
@@ -12,12 +11,6 @@ function App() {
   return (
     <div className="App">
       <div className="information">
-        <label>ID:</label>
-        <input type="number"
-          onChange={(event) => {
-            setID(event.target.value);
-          }}
-        />
         <label>Name:</label>
         <input type="text"
           onChange={(event) => {
